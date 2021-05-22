@@ -6,11 +6,12 @@
  */
 
 using NUnit.Framework;
+using System;
 
 /**
  * Tests for {@link YogaConfig}.
  */
-namespace Arrange.Tests
+namespace Facebook.Yoga
 {
     [TestFixture]
     public class YogaConfigTest
@@ -90,46 +91,46 @@ namespace Arrange.Tests
             config = null;
         }
 
-        //[Test]
-        //public void TestRetainConfig()
-        //{
-        //    ForceGC();
-        //    int nodeInstanceCount = YogaNode.GetInstanceCount();
-        //    int configInstanceCount = YogaConfig.GetInstanceCount();
-        //    TestRetainConfigForGC(nodeInstanceCount, configInstanceCount);
-        //    ForceGC();
+        [Test]
+        public void TestRetainConfig()
+        {
+            ForceGC();
+            int nodeInstanceCount = YogaNode.GetInstanceCount();
+            int configInstanceCount = YogaConfig.GetInstanceCount();
+            TestRetainConfigForGC(nodeInstanceCount, configInstanceCount);
+            ForceGC();
 
-        //    Assert.AreEqual(nodeInstanceCount, YogaNode.GetInstanceCount());
-        //    Assert.AreEqual(configInstanceCount, YogaConfig.GetInstanceCount());
-        //}
+            Assert.AreEqual(nodeInstanceCount, YogaNode.GetInstanceCount());
+            Assert.AreEqual(configInstanceCount, YogaConfig.GetInstanceCount());
+        }
 
-        //private void TestRetainConfigForGC(int nodeInstanceCount, int configInstanceCount)
-        //{
-        //    ForceGC();
-        //    Assert.AreEqual(nodeInstanceCount, YogaNode.GetInstanceCount());
-        //    Assert.AreEqual(configInstanceCount, YogaConfig.GetInstanceCount());
-        //    YogaNode node = TestRetainConfigForGC2(nodeInstanceCount, configInstanceCount);
-        //    ForceGC();
-        //    Assert.IsNotNull(node);
-        //    Assert.AreEqual(configInstanceCount + 1, YogaConfig.GetInstanceCount());
-        //    Assert.AreEqual(nodeInstanceCount + 1, YogaNode.GetInstanceCount());
-        //    node = null;
-        //}
+        private void TestRetainConfigForGC(int nodeInstanceCount, int configInstanceCount)
+        {
+            ForceGC();
+            Assert.AreEqual(nodeInstanceCount, YogaNode.GetInstanceCount());
+            Assert.AreEqual(configInstanceCount, YogaConfig.GetInstanceCount());
+            YogaNode node = TestRetainConfigForGC2(nodeInstanceCount, configInstanceCount);
+            ForceGC();
+            Assert.IsNotNull(node);
+            Assert.AreEqual(configInstanceCount + 1, YogaConfig.GetInstanceCount());
+            Assert.AreEqual(nodeInstanceCount + 1, YogaNode.GetInstanceCount());
+            node = null;
+        }
 
-        //private YogaNode TestRetainConfigForGC2(int nodeInstanceCount, int configInstanceCount)
-        //{
-        //    YogaConfig config = new YogaConfig();
-        //    Assert.IsNotNull(config);
-        //    Assert.AreEqual(configInstanceCount + 1, YogaConfig.GetInstanceCount());
+        private YogaNode TestRetainConfigForGC2(int nodeInstanceCount, int configInstanceCount)
+        {
+            YogaConfig config = new YogaConfig();
+            Assert.IsNotNull(config);
+            Assert.AreEqual(configInstanceCount + 1, YogaConfig.GetInstanceCount());
 
-        //    YogaNode node = new YogaNode(config);
-        //    Assert.IsNotNull(node);
-        //    Assert.AreEqual(nodeInstanceCount + 1, YogaNode.GetInstanceCount());
+            YogaNode node = new YogaNode(config);
+            Assert.IsNotNull(node);
+            Assert.AreEqual(nodeInstanceCount + 1, YogaNode.GetInstanceCount());
 
-        //    config = null;
+            config = null;
 
-        //    return node;
-        //}
+            return node;
+        }
 #endif
     }
 }

@@ -34,15 +34,16 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ItemGroup>
-    <ClInclude Include="Bitfield.h" />
+    <ClInclude Include="BitUtils.h" />
     <ClInclude Include="CompactValue.h" />
-    <ClInclude Include="event.h" />
+    <ClInclude Include="event\event.h" />
+    <ClInclude Include="internal\experiments-inl.h" />
+    <ClInclude Include="internal\experiments.h" />
     <ClInclude Include="log.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="YGConfig.h" />
     <ClInclude Include="YGEnums.h" />
     <ClInclude Include="YGFloatOptional.h" />
-    <ClInclude Include="YGInterop.h" />
     <ClInclude Include="YGLayout.h" />
     <ClInclude Include="YGMacros.h" />
     <ClInclude Include="YGNode.h" />
@@ -53,12 +54,12 @@
     <ClInclude Include="Yoga.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="event.cpp" />
+    <ClCompile Include="event\event.cpp" />
+    <ClCompile Include="internal\experiments.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="YGConfig.cpp" />
     <ClCompile Include="YGEnums.cpp" />
-    <ClCompile Include="YGInterop.cpp" />
     <ClCompile Include="YGLayout.cpp" />
     <ClCompile Include="YGNode.cpp" />
     <ClCompile Include="YGNodePrint.cpp" />

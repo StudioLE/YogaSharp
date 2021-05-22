@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-namespace Arrange
+namespace Facebook.Yoga
 {
     public partial class YogaNode
     {
@@ -13,7 +13,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPosition(this._ygNode, YogaEdge.Left);
+                return Native.YGNodeStyleGetPosition(_ygNode, YogaEdge.Left);
             }
 
             set
@@ -26,7 +26,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPosition(this._ygNode, YogaEdge.Top);
+                return Native.YGNodeStyleGetPosition(_ygNode, YogaEdge.Top);
             }
 
             set
@@ -39,7 +39,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPosition(this._ygNode, YogaEdge.Right);
+                return Native.YGNodeStyleGetPosition(_ygNode, YogaEdge.Right);
             }
 
             set
@@ -52,7 +52,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPosition(this._ygNode, YogaEdge.Bottom);
+                return Native.YGNodeStyleGetPosition(_ygNode, YogaEdge.Bottom);
             }
 
             set
@@ -65,7 +65,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPosition(this._ygNode, YogaEdge.Start);
+                return Native.YGNodeStyleGetPosition(_ygNode, YogaEdge.Start);
             }
 
             set
@@ -78,7 +78,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPosition(this._ygNode, YogaEdge.End);
+                return Native.YGNodeStyleGetPosition(_ygNode, YogaEdge.End);
             }
 
             set
@@ -91,11 +91,11 @@ namespace Arrange
         {
             if (value.Unit == YogaUnit.Percent)
             {
-                Native.YGNodeStyleSetPositionPercent(this._ygNode, edge, value.Value);
+                Native.YGNodeStyleSetPositionPercent(_ygNode, edge, value.Value);
             }
             else
             {
-                Native.YGNodeStyleSetPosition(this._ygNode, edge, value.Value);
+                Native.YGNodeStyleSetPosition(_ygNode, edge, value.Value);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Left);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Left);
             }
 
             set
@@ -116,7 +116,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Top);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Top);
             }
 
             set
@@ -129,7 +129,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Right);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Right);
             }
 
             set
@@ -142,7 +142,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Bottom);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Bottom);
             }
 
             set
@@ -155,7 +155,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Start);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Start);
             }
 
             set
@@ -168,7 +168,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.End);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.End);
             }
 
             set
@@ -181,7 +181,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Horizontal);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Horizontal);
             }
 
             set
@@ -194,7 +194,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.Vertical);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.Vertical);
             }
 
             set
@@ -207,7 +207,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMargin(this._ygNode, YogaEdge.All);
+                return Native.YGNodeStyleGetMargin(_ygNode, YogaEdge.All);
             }
 
             set
@@ -220,15 +220,15 @@ namespace Arrange
         {
             if (value.Unit == YogaUnit.Percent)
             {
-                Native.YGNodeStyleSetMarginPercent(this._ygNode, edge, value.Value);
+                Native.YGNodeStyleSetMarginPercent(_ygNode, edge, value.Value);
             }
             else if (value.Unit == YogaUnit.Auto)
             {
-                Native.YGNodeStyleSetMarginAuto(this._ygNode, edge);
+                Native.YGNodeStyleSetMarginAuto(_ygNode, edge);
             }
             else
             {
-                Native.YGNodeStyleSetMargin(this._ygNode, edge, value.Value);
+                Native.YGNodeStyleSetMargin(_ygNode, edge, value.Value);
             }
         }
 
@@ -236,7 +236,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Left);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Left);
             }
 
             set
@@ -249,7 +249,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Top);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Top);
             }
 
             set
@@ -262,7 +262,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Right);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Right);
             }
 
             set
@@ -275,7 +275,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Bottom);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Bottom);
             }
 
             set
@@ -288,7 +288,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Start);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Start);
             }
 
             set
@@ -301,7 +301,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.End);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.End);
             }
 
             set
@@ -314,7 +314,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Horizontal);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Horizontal);
             }
 
             set
@@ -327,7 +327,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.Vertical);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.Vertical);
             }
 
             set
@@ -340,7 +340,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPadding(this._ygNode, YogaEdge.All);
+                return Native.YGNodeStyleGetPadding(_ygNode, YogaEdge.All);
             }
 
             set
@@ -353,11 +353,11 @@ namespace Arrange
         {
             if (value.Unit == YogaUnit.Percent)
             {
-                Native.YGNodeStyleSetPaddingPercent(this._ygNode, edge, value.Value);
+                Native.YGNodeStyleSetPaddingPercent(_ygNode, edge, value.Value);
             }
             else
             {
-                Native.YGNodeStyleSetPadding(this._ygNode, edge, value.Value);
+                Native.YGNodeStyleSetPadding(_ygNode, edge, value.Value);
             }
         }
 
@@ -365,12 +365,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.Left);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.Left);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.Left, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.Left, value);
             }
         }
 
@@ -378,12 +378,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.Top);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.Top);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.Top, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.Top, value);
             }
         }
 
@@ -391,12 +391,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.Right);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.Right);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.Right, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.Right, value);
             }
         }
 
@@ -404,12 +404,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.Bottom);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.Bottom);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.Bottom, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.Bottom, value);
             }
         }
 
@@ -417,12 +417,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.Start);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.Start);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.Start, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.Start, value);
             }
         }
 
@@ -430,12 +430,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.End);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.End);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.End, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.End, value);
             }
         }
 
@@ -443,12 +443,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetBorder(this._ygNode, YogaEdge.All);
+                return Native.YGNodeStyleGetBorder(_ygNode, YogaEdge.All);
             }
 
             set
             {
-                Native.YGNodeStyleSetBorder(this._ygNode, YogaEdge.All, value);
+                Native.YGNodeStyleSetBorder(_ygNode, YogaEdge.All, value);
             }
         }
 
@@ -456,7 +456,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetMargin(this._ygNode, YogaEdge.Left);
+                return Native.YGNodeLayoutGetMargin(_ygNode, YogaEdge.Left);
             }
         }
 
@@ -464,7 +464,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetMargin(this._ygNode, YogaEdge.Top);
+                return Native.YGNodeLayoutGetMargin(_ygNode, YogaEdge.Top);
             }
         }
 
@@ -472,7 +472,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetMargin(this._ygNode, YogaEdge.Right);
+                return Native.YGNodeLayoutGetMargin(_ygNode, YogaEdge.Right);
             }
         }
 
@@ -480,7 +480,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetMargin(this._ygNode, YogaEdge.Bottom);
+                return Native.YGNodeLayoutGetMargin(_ygNode, YogaEdge.Bottom);
             }
         }
 
@@ -488,7 +488,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetMargin(this._ygNode, YogaEdge.Start);
+                return Native.YGNodeLayoutGetMargin(_ygNode, YogaEdge.Start);
             }
         }
 
@@ -496,7 +496,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetMargin(this._ygNode, YogaEdge.End);
+                return Native.YGNodeLayoutGetMargin(_ygNode, YogaEdge.End);
             }
         }
 
@@ -504,7 +504,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetPadding(this._ygNode, YogaEdge.Left);
+                return Native.YGNodeLayoutGetPadding(_ygNode, YogaEdge.Left);
             }
         }
 
@@ -512,7 +512,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetPadding(this._ygNode, YogaEdge.Top);
+                return Native.YGNodeLayoutGetPadding(_ygNode, YogaEdge.Top);
             }
         }
 
@@ -520,7 +520,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetPadding(this._ygNode, YogaEdge.Right);
+                return Native.YGNodeLayoutGetPadding(_ygNode, YogaEdge.Right);
             }
         }
 
@@ -528,7 +528,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetPadding(this._ygNode, YogaEdge.Bottom);
+                return Native.YGNodeLayoutGetPadding(_ygNode, YogaEdge.Bottom);
             }
         }
 
@@ -536,7 +536,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetPadding(this._ygNode, YogaEdge.Start);
+                return Native.YGNodeLayoutGetPadding(_ygNode, YogaEdge.Start);
             }
         }
 
@@ -544,7 +544,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetPadding(this._ygNode, YogaEdge.End);
+                return Native.YGNodeLayoutGetPadding(_ygNode, YogaEdge.End);
             }
         }
     }

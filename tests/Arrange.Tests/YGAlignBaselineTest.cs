@@ -5,14 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+using System;
 using NUnit.Framework;
 
-namespace Arrange.Tests
+namespace Facebook.Yoga
 {
     [TestFixture]
     public class YGAlignBaselineTest
     {
-        [Test, Category("Failing")]
+        [Test]
         public void Test_align_baseline_parent_using_child_in_column_as_reference()
         {
           YogaConfig config = new YogaConfig();
@@ -49,7 +50,7 @@ namespace Arrange.Tests
           Assert.AreEqual(300f, root_child1_child1.LayoutY);
         }
 
-        [Test, Category("Failing")]
+        [Test]
         public void Test_align_baseline_parent_using_child_in_row_as_reference()
         {
           YogaConfig config = new YogaConfig();

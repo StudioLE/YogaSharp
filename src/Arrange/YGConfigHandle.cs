@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Arrange
+namespace Facebook.Yoga
 {
     internal class YGConfigHandle : SafeHandle
     {
@@ -32,7 +32,7 @@ namespace Arrange
             if (this.handle != Default.handle)
             {
                 ReleaseManaged();
-                if (!this.IsInvalid)
+                if (!IsInvalid)
                 {
                     Native.YGConfigFree(this.handle);
                 }
@@ -43,19 +43,24 @@ namespace Arrange
 
         public void SetContext(YogaConfig config)
         {
-            if (!this._managedConfigHandle.IsAllocated)
+            if (!_managedConfigHandle.IsAllocated)
             {
-                this._managedConfigHandle = GCHandle.Alloc(config, GCHandleType.Weak);
-                var managedConfigPtr = GCHandle.ToIntPtr(this._managedConfigHandle);
+#if UNITY_5_4_OR_NEWER
+                // Weak causes 'GCHandle value belongs to a different domain' error
+                _managedConfigHandle = GCHandle.Alloc(config);
+#else
+                _managedConfigHandle = GCHandle.Alloc(config, GCHandleType.Weak);
+#endif
+                var managedConfigPtr = GCHandle.ToIntPtr(_managedConfigHandle);
                 Native.YGConfigSetContext(this.handle, managedConfigPtr);
             }
         }
 
         private void ReleaseManaged()
         {
-            if (this._managedConfigHandle.IsAllocated)
+            if (_managedConfigHandle.IsAllocated)
             {
-                this._managedConfigHandle.Free();
+                _managedConfigHandle.Free();
             }
         }
 

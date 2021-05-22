@@ -8,9 +8,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Arrange
+#if __IOS__
+using ObjCRuntime;
+#endif
+#if ENABLE_IL2CPP
+using AOT;
+#endif
+
+namespace Facebook.Yoga
 {
     public partial class YogaNode : IEnumerable<YogaNode>
     {
@@ -26,14 +34,14 @@ namespace Arrange
 
         public YogaNode(YogaConfig config = null)
         {
-            this._config = config == null ? YogaConfig.Default : config;
-            this._ygNode = Native.YGNodeNewWithConfig(this._config.Handle);
-            if (this._ygNode.IsInvalid)
+            _config = config == null ? YogaConfig.Default : config;
+            _ygNode = Native.YGNodeNewWithConfig(_config.Handle);
+            if (_ygNode.IsInvalid)
             {
                 throw new InvalidOperationException("Failed to allocate native memory");
             }
 
-            this._ygNode.SetContext(this);
+            _ygNode.SetContext(this);
         }
 
         public YogaNode(YogaNode srcNode)
@@ -44,46 +52,46 @@ namespace Arrange
 
         public void Reset()
         {
-            this._measureFunction = null;
-            this._baselineFunction = null;
-            this._data = null;
+            _measureFunction = null;
+            _baselineFunction = null;
+            _data = null;
 
-            this._ygNode.ReleaseManaged();
-            Native.YGNodeReset(this._ygNode);
-            this._ygNode.SetContext(this);
+            _ygNode.ReleaseManaged();
+            Native.YGNodeReset(_ygNode);
+            _ygNode.SetContext(this);
         }
 
         public bool IsDirty
         {
             get
             {
-                return Native.YGNodeIsDirty(this._ygNode);
+                return Native.YGNodeIsDirty(_ygNode);
             }
         }
 
         public virtual void MarkDirty()
         {
-            Native.YGNodeMarkDirty(this._ygNode);
+            Native.YGNodeMarkDirty(_ygNode);
         }
 
         public bool HasNewLayout
         {
             get
             {
-                return Native.YGNodeGetHasNewLayout(this._ygNode);
+                return Native.YGNodeGetHasNewLayout(_ygNode);
             }
         }
 
         public void MarkHasNewLayout()
         {
-            Native.YGNodeSetHasNewLayout(this._ygNode, true);
+            Native.YGNodeSetHasNewLayout(_ygNode, true);
         }
 
         public YogaNode Parent
         {
             get
             {
-                return this._parent != null ? this._parent.Target as YogaNode : null;
+                return _parent != null ? _parent.Target as YogaNode : null;
             }
         }
 
@@ -91,7 +99,7 @@ namespace Arrange
         {
             get
             {
-                return this._measureFunction != null;
+                return _measureFunction != null;
             }
         }
 
@@ -99,25 +107,25 @@ namespace Arrange
         {
             get
             {
-                return this._baselineFunction != null;
+                return _baselineFunction != null;
             }
         }
 
         public void CopyStyle(YogaNode srcNode)
         {
-            Native.YGNodeCopyStyle(this._ygNode, srcNode._ygNode);
+            Native.YGNodeCopyStyle(_ygNode, srcNode._ygNode);
         }
 
         public YogaDirection StyleDirection
         {
             get
             {
-                return Native.YGNodeStyleGetDirection(this._ygNode);
+                return Native.YGNodeStyleGetDirection(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetDirection(this._ygNode, value);
+                Native.YGNodeStyleSetDirection(_ygNode, value);
             }
         }
 
@@ -125,12 +133,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetFlexDirection(this._ygNode);
+                return Native.YGNodeStyleGetFlexDirection(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetFlexDirection(this._ygNode, value);
+                Native.YGNodeStyleSetFlexDirection(_ygNode, value);
             }
         }
 
@@ -138,12 +146,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetJustifyContent(this._ygNode);
+                return Native.YGNodeStyleGetJustifyContent(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetJustifyContent(this._ygNode, value);
+                Native.YGNodeStyleSetJustifyContent(_ygNode, value);
             }
         }
 
@@ -151,12 +159,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetDisplay(this._ygNode);
+                return Native.YGNodeStyleGetDisplay(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetDisplay(this._ygNode, value);
+                Native.YGNodeStyleSetDisplay(_ygNode, value);
             }
         }
 
@@ -164,12 +172,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetAlignItems(this._ygNode);
+                return Native.YGNodeStyleGetAlignItems(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetAlignItems(this._ygNode, value);
+                Native.YGNodeStyleSetAlignItems(_ygNode, value);
             }
         }
 
@@ -177,12 +185,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetAlignSelf(this._ygNode);
+                return Native.YGNodeStyleGetAlignSelf(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetAlignSelf(this._ygNode, value);
+                Native.YGNodeStyleSetAlignSelf(_ygNode, value);
             }
         }
 
@@ -190,12 +198,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetAlignContent(this._ygNode);
+                return Native.YGNodeStyleGetAlignContent(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetAlignContent(this._ygNode, value);
+                Native.YGNodeStyleSetAlignContent(_ygNode, value);
             }
         }
 
@@ -203,12 +211,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetPositionType(this._ygNode);
+                return Native.YGNodeStyleGetPositionType(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetPositionType(this._ygNode, value);
+                Native.YGNodeStyleSetPositionType(_ygNode, value);
             }
         }
 
@@ -216,12 +224,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetFlexWrap(this._ygNode);
+                return Native.YGNodeStyleGetFlexWrap(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetFlexWrap(this._ygNode, value);
+                Native.YGNodeStyleSetFlexWrap(_ygNode, value);
             }
         }
 
@@ -229,7 +237,7 @@ namespace Arrange
         {
             set
             {
-                Native.YGNodeStyleSetFlex(this._ygNode, value);
+                Native.YGNodeStyleSetFlex(_ygNode, value);
             }
         }
 
@@ -237,12 +245,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetFlexGrow(this._ygNode);
+                return Native.YGNodeStyleGetFlexGrow(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetFlexGrow(this._ygNode, value);
+                Native.YGNodeStyleSetFlexGrow(_ygNode, value);
             }
         }
 
@@ -250,12 +258,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetFlexShrink(this._ygNode);
+                return Native.YGNodeStyleGetFlexShrink(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetFlexShrink(this._ygNode, value);
+                Native.YGNodeStyleSetFlexShrink(_ygNode, value);
             }
         }
 
@@ -263,22 +271,22 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetFlexBasis(this._ygNode);
+                return Native.YGNodeStyleGetFlexBasis(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetFlexBasisPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetFlexBasisPercent(_ygNode, value.Value);
                 }
                 else if (value.Unit == YogaUnit.Auto)
                 {
-                    Native.YGNodeStyleSetFlexBasisAuto(this._ygNode);
+                    Native.YGNodeStyleSetFlexBasisAuto(_ygNode);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetFlexBasis(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetFlexBasis(_ygNode, value.Value);
                 }
             }
         }
@@ -287,22 +295,22 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetWidth(this._ygNode);
+                return Native.YGNodeStyleGetWidth(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetWidthPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetWidthPercent(_ygNode, value.Value);
                 }
                 else if (value.Unit == YogaUnit.Auto)
                 {
-                    Native.YGNodeStyleSetWidthAuto(this._ygNode);
+                    Native.YGNodeStyleSetWidthAuto(_ygNode);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetWidth(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetWidth(_ygNode, value.Value);
                 }
             }
         }
@@ -311,22 +319,22 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetHeight(this._ygNode);
+                return Native.YGNodeStyleGetHeight(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetHeightPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetHeightPercent(_ygNode, value.Value);
                 }
                 else if (value.Unit == YogaUnit.Auto)
                 {
-                    Native.YGNodeStyleSetHeightAuto(this._ygNode);
+                    Native.YGNodeStyleSetHeightAuto(_ygNode);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetHeight(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetHeight(_ygNode, value.Value);
                 }
             }
         }
@@ -335,18 +343,18 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMaxWidth(this._ygNode);
+                return Native.YGNodeStyleGetMaxWidth(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetMaxWidthPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMaxWidthPercent(_ygNode, value.Value);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetMaxWidth(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMaxWidth(_ygNode, value.Value);
                 }
             }
         }
@@ -355,18 +363,18 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMaxHeight(this._ygNode);
+                return Native.YGNodeStyleGetMaxHeight(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetMaxHeightPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMaxHeightPercent(_ygNode, value.Value);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetMaxHeight(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMaxHeight(_ygNode, value.Value);
                 }
             }
         }
@@ -375,18 +383,18 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMinWidth(this._ygNode);
+                return Native.YGNodeStyleGetMinWidth(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetMinWidthPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMinWidthPercent(_ygNode, value.Value);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetMinWidth(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMinWidth(_ygNode, value.Value);
                 }
             }
         }
@@ -395,18 +403,18 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetMinHeight(this._ygNode);
+                return Native.YGNodeStyleGetMinHeight(_ygNode);
             }
 
             set
             {
                 if (value.Unit == YogaUnit.Percent)
                 {
-                    Native.YGNodeStyleSetMinHeightPercent(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMinHeightPercent(_ygNode, value.Value);
                 }
                 else
                 {
-                    Native.YGNodeStyleSetMinHeight(this._ygNode, value.Value);
+                    Native.YGNodeStyleSetMinHeight(_ygNode, value.Value);
                 }
             }
         }
@@ -415,12 +423,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetAspectRatio(this._ygNode);
+                return Native.YGNodeStyleGetAspectRatio(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetAspectRatio(this._ygNode, value);
+                Native.YGNodeStyleSetAspectRatio(_ygNode, value);
             }
         }
 
@@ -428,7 +436,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetLeft(this._ygNode);
+                return Native.YGNodeLayoutGetLeft(_ygNode);
             }
         }
 
@@ -436,7 +444,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetTop(this._ygNode);
+                return Native.YGNodeLayoutGetTop(_ygNode);
             }
         }
 
@@ -444,7 +452,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetWidth(this._ygNode);
+                return Native.YGNodeLayoutGetWidth(_ygNode);
             }
         }
 
@@ -452,7 +460,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetHeight(this._ygNode);
+                return Native.YGNodeLayoutGetHeight(_ygNode);
             }
         }
 
@@ -460,7 +468,7 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeLayoutGetDirection(this._ygNode);
+                return Native.YGNodeLayoutGetDirection(_ygNode);
             }
         }
 
@@ -468,12 +476,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGNodeStyleGetOverflow(this._ygNode);
+                return Native.YGNodeStyleGetOverflow(_ygNode);
             }
 
             set
             {
-                Native.YGNodeStyleSetOverflow(this._ygNode, value);
+                Native.YGNodeStyleSetOverflow(_ygNode, value);
             }
         }
 
@@ -481,12 +489,12 @@ namespace Arrange
         {
             get
             {
-                return this._data;
+                return _data;
             }
 
             set
             {
-                this._data = value;
+                _data = value;
             }
         }
 
@@ -494,7 +502,7 @@ namespace Arrange
         {
             get
             {
-                return this._children[index];
+                return _children[index];
             }
         }
 
@@ -502,25 +510,25 @@ namespace Arrange
         {
             get
             {
-                return this._children != null ? this._children.Count : 0;
+                return _children != null ? _children.Count : 0;
             }
         }
 
         public void MarkLayoutSeen()
         {
-            Native.YGNodeSetHasNewLayout(this._ygNode, false);
+            Native.YGNodeSetHasNewLayout(_ygNode, false);
         }
 
         public bool IsReferenceBaseline
         {
             get
             {
-                return Native.YGNodeIsReferenceBaseline(this._ygNode);
+                return Native.YGNodeIsReferenceBaseline(_ygNode);
             }
 
             set
             {
-                Native.YGNodeSetIsReferenceBaseline(this._ygNode, value);
+                Native.YGNodeSetIsReferenceBaseline(_ygNode, value);
             }
         }
 
@@ -536,26 +544,26 @@ namespace Arrange
 
         public void Insert(int index, YogaNode node)
         {
-            if (this._children == null)
+            if (_children == null)
             {
-                this._children = new List<YogaNode>(4);
+                _children = new List<YogaNode>(4);
             }
-            this._children.Insert(index, node);
+            _children.Insert(index, node);
             node._parent = new WeakReference(this);
-            Native.YGNodeInsertChild(this._ygNode, node._ygNode, (uint)index);
+            Native.YGNodeInsertChild(_ygNode, node._ygNode, (uint)index);
         }
 
         public void RemoveAt(int index)
         {
-            var child = this._children[index];
+            var child = _children[index];
             child._parent = null;
-            this._children.RemoveAt(index);
-            Native.YGNodeRemoveChild(this._ygNode, child._ygNode);
+            _children.RemoveAt(index);
+            Native.YGNodeRemoveChild(_ygNode, child._ygNode);
         }
 
         public void AddChild(YogaNode child)
         {
-            Insert(this.Count, child);
+            Insert(Count, child);
         }
 
         public void RemoveChild(YogaNode child)
@@ -569,33 +577,33 @@ namespace Arrange
 
         public void Clear()
         {
-            if (this._children != null)
+            if (_children != null)
             {
-                while (this._children.Count > 0)
+                while (_children.Count > 0)
                 {
-                    RemoveAt(this._children.Count-1);
+                    RemoveAt(_children.Count-1);
                 }
             }
         }
 
         public int IndexOf(YogaNode node)
         {
-            return this._children != null ? this._children.IndexOf(node) : -1;
+            return _children != null ? _children.IndexOf(node) : -1;
         }
 
         public void SetMeasureFunction(MeasureFunction measureFunction)
         {
-            this._measureFunction = measureFunction;
-            this._managedMeasure = measureFunction != null ? MeasureInternal : (YogaMeasureFunc)null;
-            Native.YGNodeSetMeasureFunc(this._ygNode, this._managedMeasure);
+            _measureFunction = measureFunction;
+            _managedMeasure = measureFunction != null ? MeasureInternal : (YogaMeasureFunc)null;
+            Native.YGNodeSetMeasureFunc(_ygNode, _managedMeasure);
         }
 
         public void SetBaselineFunction(BaselineFunction baselineFunction)
         {
-            this._baselineFunction = baselineFunction;
-            this._managedBaseline =
+            _baselineFunction = baselineFunction;
+            _managedBaseline =
                 baselineFunction != null ? BaselineInternal : (YogaBaselineFunc)null;
-            Native.YGNodeSetBaselineFunc(this._ygNode, this._managedBaseline);
+            Native.YGNodeSetBaselineFunc(_ygNode, _managedBaseline);
         }
 
         public void CalculateLayout(
@@ -603,12 +611,15 @@ namespace Arrange
             float height = YogaConstants.Undefined)
         {
             Native.YGNodeCalculateLayout(
-                this._ygNode,
+                _ygNode,
                 width,
                 height,
-                Native.YGNodeStyleGetDirection(this._ygNode));
+                Native.YGNodeStyleGetDirection(_ygNode));
         }
 
+#if (UNITY_IOS && !UNITY_EDITOR) || ENABLE_IL2CPP || __IOS__
+        [MonoPInvokeCallback(typeof(YogaMeasureFunc))]
+#endif
         private static YogaSize MeasureInternal(
             IntPtr unmanagedNodePtr,
             float width,
@@ -624,6 +635,9 @@ namespace Arrange
             return node._measureFunction(node, width, widthMode, height, heightMode);
         }
 
+#if (UNITY_IOS && !UNITY_EDITOR) || ENABLE_IL2CPP || __IOS__
+        [MonoPInvokeCallback(typeof(YogaBaselineFunc))]
+#endif
         private static float BaselineInternal(
             IntPtr unmanagedNodePtr,
             float width,
@@ -641,22 +655,22 @@ namespace Arrange
             YogaPrintOptions.Layout|YogaPrintOptions.Style|YogaPrintOptions.Children)
         {
             StringBuilder sb = new StringBuilder();
-            Logger orig = this._config.Logger;
-            this._config.Logger = (config, node, level, message) => {sb.Append(message);};
-            Native.YGNodePrint(this._ygNode, options);
-            this._config.Logger = orig;
+            Logger orig = _config.Logger;
+            _config.Logger = (config, node, level, message) => {sb.Append(message);};
+            Native.YGNodePrint(_ygNode, options);
+            _config.Logger = orig;
             return sb.ToString();
         }
 
         public IEnumerator<YogaNode> GetEnumerator()
         {
-            return this._children != null ? ((IEnumerable<YogaNode>)this._children).GetEnumerator() :
+            return _children != null ? ((IEnumerable<YogaNode>)_children).GetEnumerator() :
                 System.Linq.Enumerable.Empty<YogaNode>().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this._children != null ? ((IEnumerable<YogaNode>)this._children).GetEnumerator() :
+            return _children != null ? ((IEnumerable<YogaNode>)_children).GetEnumerator() :
                 System.Linq.Enumerable.Empty<YogaNode>().GetEnumerator();
         }
     }

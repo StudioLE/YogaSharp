@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-namespace Arrange
+namespace Facebook.Yoga
 {
     [System.Flags]
     public enum YogaPrintOptions

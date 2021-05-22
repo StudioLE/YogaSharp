@@ -6,11 +6,12 @@
  */
 
 using NUnit.Framework;
+using System;
 
 /**
  * Tests for {@link YogaNode}.
  */
-namespace Arrange.Tests
+namespace Facebook.Yoga
 {
     [TestFixture]
     public class YogaNodeSpacingTest

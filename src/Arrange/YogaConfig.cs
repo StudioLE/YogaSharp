@@ -6,8 +6,16 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 
-namespace Arrange
+#if __IOS__
+using ObjCRuntime;
+#endif
+#if ENABLE_IL2CPP
+using AOT;
+#endif
+
+namespace Facebook.Yoga
 {
     public class YogaConfig
     {
@@ -19,15 +27,15 @@ namespace Arrange
 
         private YogaConfig(YGConfigHandle ygConfig)
         {
-            this._ygConfig = ygConfig;
-            if (this._ygConfig.IsInvalid)
+            _ygConfig = ygConfig;
+            if (_ygConfig.IsInvalid)
             {
                 throw new InvalidOperationException("Failed to allocate native memory");
             }
 
-            this._ygConfig.SetContext(this);
+            _ygConfig.SetContext(this);
 
-            if (this._ygConfig == YGConfigHandle.Default)
+            if (_ygConfig == YGConfigHandle.Default)
             {
                 _managedLogger = LoggerInternal;
                 Native.YGInteropSetLogger(_managedLogger);
@@ -42,10 +50,13 @@ namespace Arrange
         internal YGConfigHandle Handle
         {
             get {
-                return this._ygConfig;
+                return _ygConfig;
             }
         }
 
+#if (UNITY_IOS && !UNITY_EDITOR) || ENABLE_IL2CPP || __IOS__
+        [MonoPInvokeCallback(typeof(YogaLogger))]
+#endif
         private static void LoggerInternal(
             IntPtr unmanagedConfigPtr,
             IntPtr unmanagedNodePtr,
@@ -73,11 +84,11 @@ namespace Arrange
         public Logger Logger
         {
             get {
-                return this._logger;
+                return _logger;
             }
 
             set {
-                this._logger = value;
+                _logger = value;
             }
         }
 
@@ -85,24 +96,24 @@ namespace Arrange
             YogaExperimentalFeature feature,
             bool enabled)
         {
-            Native.YGConfigSetExperimentalFeatureEnabled(this._ygConfig, feature, enabled);
+            Native.YGConfigSetExperimentalFeatureEnabled(_ygConfig, feature, enabled);
         }
 
         public bool IsExperimentalFeatureEnabled(YogaExperimentalFeature feature)
         {
-            return Native.YGConfigIsExperimentalFeatureEnabled(this._ygConfig, feature);
+            return Native.YGConfigIsExperimentalFeatureEnabled(_ygConfig, feature);
         }
 
         public bool UseWebDefaults
         {
             get
             {
-                return Native.YGConfigGetUseWebDefaults(this._ygConfig);
+                return Native.YGConfigGetUseWebDefaults(_ygConfig);
             }
 
             set
             {
-                Native.YGConfigSetUseWebDefaults(this._ygConfig, value);
+                Native.YGConfigSetUseWebDefaults(_ygConfig, value);
             }
         }
 
@@ -110,12 +121,12 @@ namespace Arrange
         {
             get
             {
-                return Native.YGConfigGetUseLegacyStretchBehaviour(this._ygConfig);
+                return Native.YGConfigGetUseLegacyStretchBehaviour(_ygConfig);
             }
 
             set
             {
-                Native.YGConfigSetUseLegacyStretchBehaviour(this._ygConfig, value);
+                Native.YGConfigSetUseLegacyStretchBehaviour(_ygConfig, value);
             }
         }
 
@@ -123,7 +134,7 @@ namespace Arrange
         {
             set
             {
-                Native.YGConfigSetPointScaleFactor(this._ygConfig, value);
+                Native.YGConfigSetPointScaleFactor(_ygConfig, value);
             }
         }
 
