@@ -1,13 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Platform>x64</Platform>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DistDirectory>$(MSBuildProjectDirectory)\..\..\dist</DistDirectory>
   </PropertyGroup>
+
+  <!-- Reference to yoga.dll -->
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)..\..\lib\x64\yoga.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>yoga.dll</Link>
       <Visible>false</Visible>
+      <PackagePath>lib\$(TargetFramework)</PackagePath>
     </Content>
   </ItemGroup>
+
 </Project>
