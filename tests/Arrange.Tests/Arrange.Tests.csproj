@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\IceReaper.YogaSharp\IceReaper.YogaSharp.csproj" />
+    <ProjectReference Include="..\..\src\Arrange\Arrange.csproj" />
   </ItemGroup>
 
 </Project>
