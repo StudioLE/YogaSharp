@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     public delegate float BaselineFunction(YogaNode node, float width, float height);
 }

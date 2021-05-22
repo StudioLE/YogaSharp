@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     internal class YGNodeHandle : SafeHandle
     {
@@ -29,7 +29,7 @@ namespace Facebook.Yoga
         protected override bool ReleaseHandle()
         {
             ReleaseManaged();
-            if (!IsInvalid)
+            if (!this.IsInvalid)
             {
                 Native.YGNodeFree(this.handle);
                 GC.KeepAlive(this);
@@ -39,19 +39,19 @@ namespace Facebook.Yoga
 
         public void SetContext(YogaNode node)
         {
-            if (!_managedNodeHandle.IsAllocated)
+            if (!this._managedNodeHandle.IsAllocated)
             {
-                _managedNodeHandle = GCHandle.Alloc(node, GCHandleType.Weak);
-                var managedNodePtr = GCHandle.ToIntPtr(_managedNodeHandle);
+                this._managedNodeHandle = GCHandle.Alloc(node, GCHandleType.Weak);
+                var managedNodePtr = GCHandle.ToIntPtr(this._managedNodeHandle);
                 Native.YGNodeSetContext(this.handle, managedNodePtr);
             }
         }
 
         public void ReleaseManaged()
         {
-            if (_managedNodeHandle.IsAllocated)
+            if (this._managedNodeHandle.IsAllocated)
             {
-                _managedNodeHandle.Free();
+                this._managedNodeHandle.Free();
             }
         }
 

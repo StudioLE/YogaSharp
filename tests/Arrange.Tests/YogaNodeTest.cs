@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-using NUnit.Framework;
 using System;
+using NUnit.Framework;
 
 /**
  * Tests for {@link YogaNode}.
  */
-namespace Facebook.Yoga
+namespace Arrange.Tests
 {
     [TestFixture]
     public class YogaNodeTest

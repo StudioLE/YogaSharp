@@ -7,7 +7,7 @@
 
 using System.Runtime.InteropServices;
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct YogaSize

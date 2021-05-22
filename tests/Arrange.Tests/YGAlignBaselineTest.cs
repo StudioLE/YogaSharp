@@ -5,10 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-using System;
 using NUnit.Framework;
 
-namespace Facebook.Yoga
+namespace Arrange.Tests
 {
     [TestFixture]
     public class YGAlignBaselineTest

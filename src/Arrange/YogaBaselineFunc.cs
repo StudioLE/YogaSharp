@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate float YogaBaselineFunc(IntPtr unmanagedNodePtr, float width, float height);

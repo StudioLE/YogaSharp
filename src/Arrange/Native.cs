@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     internal static class Native
     {

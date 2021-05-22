@@ -6,12 +6,11 @@
  */
 
 using NUnit.Framework;
-using System;
 
 /**
  * Tests for {@link YogaConfig}.
  */
-namespace Facebook.Yoga
+namespace Arrange.Tests
 {
     [TestFixture]
     public class YogaConfigTest

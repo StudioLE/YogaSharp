@@ -5,10 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-using System;
 using System.Runtime.InteropServices;
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct YogaValue
@@ -20,7 +19,7 @@ namespace Facebook.Yoga
         {
             get
             {
-                return unit;
+                return this.unit;
             }
         }
 
@@ -28,7 +27,7 @@ namespace Facebook.Yoga
         {
             get
             {
-                return value;
+                return this.value;
             }
         }
 
@@ -43,7 +42,7 @@ namespace Facebook.Yoga
 
         public bool Equals(YogaValue other)
         {
-            return Unit == other.Unit && (Value.Equals(other.Value) || Unit == YogaUnit.Undefined);
+            return this.Unit == other.Unit && (this.Value.Equals(other.Value) || this.Unit == YogaUnit.Undefined);
         }
 
         public override bool Equals(object obj)
@@ -56,7 +55,7 @@ namespace Facebook.Yoga
         {
             unchecked
             {
-                return (Value.GetHashCode() * 397) ^ (int) Unit;
+                return (this.Value.GetHashCode() * 397) ^ (int) this.Unit;
             }
         }
 

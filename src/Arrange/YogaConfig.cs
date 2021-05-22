@@ -6,9 +6,8 @@
  */
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace Facebook.Yoga
+namespace Arrange
 {
     public class YogaConfig
     {
@@ -20,15 +19,15 @@ namespace Facebook.Yoga
 
         private YogaConfig(YGConfigHandle ygConfig)
         {
-            _ygConfig = ygConfig;
-            if (_ygConfig.IsInvalid)
+            this._ygConfig = ygConfig;
+            if (this._ygConfig.IsInvalid)
             {
                 throw new InvalidOperationException("Failed to allocate native memory");
             }
 
-            _ygConfig.SetContext(this);
+            this._ygConfig.SetContext(this);
 
-            if (_ygConfig == YGConfigHandle.Default)
+            if (this._ygConfig == YGConfigHandle.Default)
             {
                 _managedLogger = LoggerInternal;
                 Native.YGInteropSetLogger(_managedLogger);
@@ -43,7 +42,7 @@ namespace Facebook.Yoga
         internal YGConfigHandle Handle
         {
             get {
-                return _ygConfig;
+                return this._ygConfig;
             }
         }
 
@@ -74,11 +73,11 @@ namespace Facebook.Yoga
         public Logger Logger
         {
             get {
-                return _logger;
+                return this._logger;
             }
 
             set {
-                _logger = value;
+                this._logger = value;
             }
         }
 
@@ -86,24 +85,24 @@ namespace Facebook.Yoga
             YogaExperimentalFeature feature,
             bool enabled)
         {
-            Native.YGConfigSetExperimentalFeatureEnabled(_ygConfig, feature, enabled);
+            Native.YGConfigSetExperimentalFeatureEnabled(this._ygConfig, feature, enabled);
         }
 
         public bool IsExperimentalFeatureEnabled(YogaExperimentalFeature feature)
         {
-            return Native.YGConfigIsExperimentalFeatureEnabled(_ygConfig, feature);
+            return Native.YGConfigIsExperimentalFeatureEnabled(this._ygConfig, feature);
         }
 
         public bool UseWebDefaults
         {
             get
             {
-                return Native.YGConfigGetUseWebDefaults(_ygConfig);
+                return Native.YGConfigGetUseWebDefaults(this._ygConfig);
             }
 
             set
             {
-                Native.YGConfigSetUseWebDefaults(_ygConfig, value);
+                Native.YGConfigSetUseWebDefaults(this._ygConfig, value);
             }
         }
 
@@ -111,12 +110,12 @@ namespace Facebook.Yoga
         {
             get
             {
-                return Native.YGConfigGetUseLegacyStretchBehaviour(_ygConfig);
+                return Native.YGConfigGetUseLegacyStretchBehaviour(this._ygConfig);
             }
 
             set
             {
-                Native.YGConfigSetUseLegacyStretchBehaviour(_ygConfig, value);
+                Native.YGConfigSetUseLegacyStretchBehaviour(this._ygConfig, value);
             }
         }
 
@@ -124,7 +123,7 @@ namespace Facebook.Yoga
         {
             set
             {
-                Native.YGConfigSetPointScaleFactor(_ygConfig, value);
+                Native.YGConfigSetPointScaleFactor(this._ygConfig, value);
             }
         }
 
