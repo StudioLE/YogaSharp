@@ -12,11 +12,7 @@ namespace Facebook.Yoga
 {
     internal static class Native
     {
-#if (UNITY_IOS && !UNITY_EDITOR) || __IOS__
-        private const string DllName = "__Internal";
-#else
         private const string DllName = "yoga";
-#endif
 
         [DllImport(DllName, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
         public static extern void YGInteropSetLogger(

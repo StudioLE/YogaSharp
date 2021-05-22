@@ -41,12 +41,7 @@ namespace Facebook.Yoga
         {
             if (!_managedNodeHandle.IsAllocated)
             {
-#if UNITY_5_4_OR_NEWER
-                // Weak causes 'GCHandle value belongs to a different domain' error
-                _managedNodeHandle = GCHandle.Alloc(node);
-#else
                 _managedNodeHandle = GCHandle.Alloc(node, GCHandleType.Weak);
-#endif
                 var managedNodePtr = GCHandle.ToIntPtr(_managedNodeHandle);
                 Native.YGNodeSetContext(this.handle, managedNodePtr);
             }
